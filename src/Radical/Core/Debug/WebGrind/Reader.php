@@ -185,17 +185,20 @@ class Reader
 		if($this->headers==null){ // Cache headers
 			$this->seek($this->headersPos);
 			$this->headers['runs'] = 0;
-			while($line=$this->readLine()){
-				$parts = explode(': ',$line);
-				if ($parts[0] == 'summary') {
-				    $this->headers['runs']++;
-				    if(isset($this->headers['summary']))
-                        $this->headers['summary'] += $parts[1];
-                    else
-                        $this->headers['summary'] = $parts[1];
-				} else {
-                    $this->headers[$parts[0]] = $parts[1];
-                }
+			while(!feof($this->fp)){
+				$line=$this->readLine();
+				if(!empty($line)){
+					$parts = explode(': ',$line);
+					if ($parts[0] == 'summary') {
+					    $this->headers['runs']++;
+					    if(isset($this->headers['summary']))
+	                        $this->headers['summary'] += $parts[1];
+	                    else
+	                        $this->headers['summary'] = $parts[1];
+					} else {
+	                    $this->headers[$parts[0]] = $parts[1];
+	                }
+				}
 			}
 		}
 		return $this->headers;

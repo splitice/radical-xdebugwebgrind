@@ -1,8 +1,8 @@
 <?php
 namespace Radical\Core\Debug\WebGrind;
 
-use Web\Template;
-use Web\Page\Handler\PageBase;
+use Radical\Web\Template;
+use Radical\Web\Page\Handler\PageBase;
 
 class Handler extends PageBase {
 	protected $template;

@@ -6,7 +6,6 @@ use Radical\Web\Page\Router\Recognise;
 use Radical\Web\Page\Router\IPageRecognise;
 use Radical\Utility\Net\HTTP;
 use Radical\Web\Page\Controller;
-use Radical\Database\DBAL\Handler\QueryLog;
 
 class Debug implements IPageRecognise {
 	private static $enable = true;

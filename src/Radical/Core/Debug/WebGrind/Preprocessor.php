@@ -60,7 +60,11 @@ class Preprocessor
 		
 		
 		// Read information into memory
-		while(($line = fgets($in))){
+		while(!feof($in)){
+			$line = fgets($in);
+			if(empty($line))
+				continue;
+			
 			if(substr_compare($line,'fl=',0,3)===0){
 				// Found invocation of function. Read functionname
 				list($function) = fscanf($in,"fn=%s");
